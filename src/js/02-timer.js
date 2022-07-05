@@ -14,6 +14,8 @@ const secsEl = document.querySelector('[data-seconds]');
 
 let selectedDate = null;
 
+startButton.disabled = true;
+
 flatpickr('#datetime-picker', {
   enableTime: true,
   time_24hr: true,
@@ -24,7 +26,6 @@ flatpickr('#datetime-picker', {
     const restOfTime = selectedDates[0] - Date.now();
 
     if (restOfTime < 0) {
-      startButton.disabled = true;
       alert('Please choose a date in the future');
       startButton.disabled = true;
       return restOfTime;
@@ -34,21 +35,23 @@ flatpickr('#datetime-picker', {
   },
 });
 
-startButton.addEventListener('click', onBtnStartClick);
+startButton.addEventListener('click', onButtonClick);
 
-function onBtnStartClick() {
+function onButtonClick() {
   intervalId = setInterval(() => {
     const restOfTime = selectedDate - Date.now();
+
+    if (restOfTime < 0) {
+      clearInterval(intervalId);
+      return;
+    }
+
     const { days, hours, minutes, seconds } = convertMs(restOfTime);
     daysEl.textContent = days;
     hoursEl.textContent = hours;
     minsEl.textContent = minutes;
     secsEl.textContent = seconds;
   }, 1000);
-
-  if (restOfTime < 0) {
-    clearInterval(intervalId);
-  }
 }
 
 function convertMs(ms) {

@@ -8,6 +8,8 @@ const changeColor = function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 };
 
+stoptBtn.disabled = true;
+
 function startChangeColor() {
   timeId = setInterval(() => {
     document.body.style.backgroundColor = changeColor();
@@ -18,7 +20,7 @@ function startChangeColor() {
 }
 
 function stopChangeColor() {
-  clearInterval(timeId);
   startBtn.disabled = false;
   stoptBtn.disabled = true;
+  clearInterval(timeId);
 }
