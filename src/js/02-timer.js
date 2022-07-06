@@ -6,13 +6,11 @@ const daysEl = document.querySelector('[data-days]');
 const hoursEl = document.querySelector('[data-hours]');
 const minsEl = document.querySelector('[data-minutes]');
 const secsEl = document.querySelector('[data-seconds]');
-const inputEl = document.querySelector('#datetime-picker');
-const input = document.querySelector('.flatpickr-mobile');
+const inputEl = document.querySelector('input');
 
 let selectedDate = null;
 
 startButton.disabled = true;
-// inputEl.disabled = false;
 
 flatpickr(inputEl, {
   enableTime: true,
@@ -23,7 +21,7 @@ flatpickr(inputEl, {
     selectedDate = selectedDates[0];
     const restOfTime = selectedDates[0] - Date.now();
 
-    if (restOfTime < 0) {
+    if (selectedDate < 0) {
       alert('Please choose a date in the future');
       startButton.disabled = true;
       return restOfTime;
@@ -39,7 +37,7 @@ function onButtonClick() {
   intervalId = setInterval(() => {
     startButton.disabled = true;
     inputEl.disabled = true;
-    input.setAttribute('disabled', 'disabled');
+
     const restOfTime = selectedDate - Date.now();
 
     if (restOfTime < 0) {
