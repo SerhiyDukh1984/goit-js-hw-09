@@ -16,6 +16,7 @@ function startChangeColor() {
     stoptBtn.disabled = false;
 
     document.body.style.backgroundColor = changeColor();
+    return timeId;
   }, 500);
 }
 
