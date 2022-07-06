@@ -6,17 +6,15 @@ const daysEl = document.querySelector('[data-days]');
 const hoursEl = document.querySelector('[data-hours]');
 const minsEl = document.querySelector('[data-minutes]');
 const secsEl = document.querySelector('[data-seconds]');
-
-// const daysText = document.querySelector('.label-d');
-// const hoursText = document.querySelector('.label-h');
-// const minsText = document.querySelector('.label-m');
-// const secsText = document.querySelector('.label-s');
+const inputEl = document.querySelector('#datetime-picker');
+const input = document.querySelector('.flatpickr-mobile');
 
 let selectedDate = null;
 
 startButton.disabled = true;
+// inputEl.disabled = false;
 
-flatpickr('#datetime-picker', {
+flatpickr(inputEl, {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
@@ -39,6 +37,9 @@ startButton.addEventListener('click', onButtonClick);
 
 function onButtonClick() {
   intervalId = setInterval(() => {
+    startButton.disabled = true;
+    inputEl.disabled = true;
+    input.setAttribute('disabled', 'disabled');
     const restOfTime = selectedDate - Date.now();
 
     if (restOfTime < 0) {
