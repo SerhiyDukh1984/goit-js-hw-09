@@ -1,12 +1,12 @@
 const startBtn = document.querySelector('[data-start]');
 const stoptBtn = document.querySelector('[data-stop]');
 
-startBtn.addEventListener('click', startChangeColor);
-stoptBtn.addEventListener('click', stopChangeColor);
-
 const changeColor = function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 };
+
+startBtn.addEventListener('click', startChangeColor);
+stoptBtn.addEventListener('click', stopChangeColor);
 
 stoptBtn.disabled = true;
 
