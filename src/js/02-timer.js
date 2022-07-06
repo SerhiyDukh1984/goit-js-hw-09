@@ -21,8 +21,9 @@ flatpickr(inputEl, {
     selectedDate = selectedDates[0];
     const restOfTime = selectedDates[0] - Date.now();
 
-    if (selectedDate < 0) {
+    if (restOfTime < 0) {
       alert('Please choose a date in the future');
+      console.log('🚀 ~ alert', alert);
       startButton.disabled = true;
       return restOfTime;
     }
