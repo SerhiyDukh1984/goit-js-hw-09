@@ -2,7 +2,6 @@ const formEl = document.querySelector('form');
 const firstDelayEl = formEl.elements.delay;
 const stepEl = formEl.elements.step;
 const amountEl = formEl.elements.amount;
-console.log('🚀 ~ amountEl', amountEl.value);
 const ButtonEl = document.querySelector('button');
 
 formEl.addEventListener('submit', onSubmitClick);
@@ -24,6 +23,7 @@ function createPromise(position, delay) {
       let counter = 0;
       if (counter > amountEl) {
         clearTimeout(timeoutId);
+        return;
       }
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
@@ -36,8 +36,8 @@ function createPromise(position, delay) {
 }
 
 function onSuccess({ position, delay }) {
-  console.log(`Fulfilled promise ${position} in ${delay}ms`);
+  console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
 }
 function onError({ position, delay }) {
-  console.log(`Rejected promise ${position} in ${delay}ms`);
+  console.log(`❌ Rejected promise ${position} in ${delay}ms`);
 }
