@@ -12,11 +12,11 @@ stoptBtn.disabled = true;
 
 function startChangeColor() {
   timeId = setInterval(() => {
+    startBtn.disabled = true;
+    stoptBtn.disabled = false;
+
     document.body.style.backgroundColor = changeColor();
   }, 500);
-
-  startBtn.disabled = true;
-  stoptBtn.disabled = false;
 }
 
 function stopChangeColor() {
