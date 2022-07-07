@@ -18,7 +18,7 @@ function startChangeColor() {
     stoptBtn.disabled = false;
 
     document.body.style.backgroundColor = changeColor();
-  }, 500);
+  }, 1000);
 }
 
 function stopChangeColor() {

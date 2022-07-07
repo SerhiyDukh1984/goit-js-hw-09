@@ -9,6 +9,7 @@ const secsEl = document.querySelector('[data-seconds]');
 const inputEl = document.querySelector('input');
 
 let selectedDate = null;
+let intervalId = 0;
 
 startButton.disabled = true;
 
