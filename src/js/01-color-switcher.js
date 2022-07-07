@@ -10,6 +10,8 @@ stoptBtn.addEventListener('click', stopChangeColor);
 
 stoptBtn.disabled = true;
 
+let timeId = 0;
+
 function startChangeColor() {
   timeId = setInterval(() => {
     startBtn.disabled = true;
