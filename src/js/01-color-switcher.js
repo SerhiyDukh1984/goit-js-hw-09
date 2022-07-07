@@ -19,7 +19,6 @@ function startChangeColor() {
 
     document.body.style.backgroundColor = changeColor();
   }, 500);
-  return timeId;
 }
 
 function stopChangeColor() {
