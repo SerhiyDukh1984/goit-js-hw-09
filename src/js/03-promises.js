@@ -4,38 +4,39 @@ const stepEl = formEl.elements.step;
 const amountEl = formEl.elements.amount;
 const buttonEl = document.querySelector('button');
 
-formEl.addEventListener('submit', onSubmitClick);
+buttonEl.addEventListener('click', onButtonClick);
 
-let counter = 0;
+let delay = 0;
+let position = 0;
 
-function onSubmitClick(e) {
+function onButtonClick(e) {
   buttonEl.disabled = true;
   e.preventDefault();
-  let delay = Number(firstDelayEl.value);
+  delay = Number(firstDelayEl.value);
 
   for (let i = 1; i <= amountEl.value; i += 1) {
     position = i;
-    createPromise(position, delay).then(resolve).catch(reject);
+    createPromise(position, delay).then(onSuccess).catch(onError);
     delay += Number(stepEl.value);
   }
 }
 
-function onSuccess({ position, delay }) {}
+buttonEl.disabled = false;
+
+function onSuccess({ position, delay }) {
+  console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+}
 function onError({ position, delay }) {
-  console.log();
+  console.log(`❌ Rejected promise ${position} in ${delay}ms`);
 }
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     timeoutId = setTimeout(() => {
-      if (counter > amountEl) {
-        clearTimeout(timeoutId);
-        buttonEl.disabled = false;
-        return;
-      }
       const shouldResolve = Math.random() > 0.3;
 
       counter = +1;
+
       if (shouldResolve) {
         resolve(`✅ Fulfilled promise ${position} in ${delay}ms`);
         return { position, delay };
