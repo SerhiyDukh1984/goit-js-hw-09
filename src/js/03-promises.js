@@ -13,13 +13,15 @@ formEl.addEventListener('submit', onSubmitClick);
 
 function onSubmitClick(e) {
   e.preventDefault();
-  const elementsOfForm = e.currentTarget.elements;
+  btnSubmitEl.disabled = true;
 
-  delay = Number(elementsOfForm.delay.value);
-  step = Number(elementsOfForm.step.value);
-  let amountInput = Number(elementsOfForm.amount.value);
+  const input = e.currentTarget.elements;
 
-  for (let i = 1; i <= amountInput; i += 1) {
+  delay = Number(input.delay.value);
+  step = Number(input.step.value);
+  let inputValue = Number(input.amount.value);
+
+  for (let i = 1; i <= inputValue; i += 1) {
     amount.push(i);
   }
 
